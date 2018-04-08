@@ -12,5 +12,15 @@ public class BaseService<T> {
 	public int save(T t) {
 		return baseMapper.insert(t);
 	}
+	
+	public void deleteById(String key) {
+		baseMapper.deleteByPrimaryKey(key);
+	}
+	
+	public T selectOne(String key) {
+		return baseMapper.selectByPrimaryKey(key);
+	}
+	
+	
 
 }
