@@ -23,14 +23,14 @@ public class RedisService {
 	/**
 	 * 缓存字符串
 	 */
-	public void setString(String key, String value) {
+	public void putString(String key, String value) {
 		stringRedisTemplate.opsForValue().set(key, value);
 	}
 
 	/**
 	 * 缓存字符串(设置超时)
 	 */
-	public void setString(String key, String value, long timeout) {
+	public void putString(String key, String value, long timeout) {
 		stringRedisTemplate.opsForValue().set(key, value, timeout);
 	}
 
@@ -42,16 +42,23 @@ public class RedisService {
 	}
 
 	/**
+	 * StringRedisTemplate删除缓存字符串
+	 */
+	public boolean deleteString(String key) {
+		return stringRedisTemplate.delete(key);
+	}
+
+	/**
 	 * 缓存对象
 	 */
-	public void setObject(String key, Object object) {
+	public void putObject(String key, Object object) {
 		redisTemplate.opsForValue().set(key, object);
 	}
 
 	/**
 	 * 缓存对象(设置超市)
 	 */
-	public void setObject(String key, Object object, long timeout) {
+	public void putObject(String key, Object object, long timeout) {
 		redisTemplate.opsForValue().set(key, object, timeout);
 	}
 
@@ -65,7 +72,7 @@ public class RedisService {
 	/**
 	 * 缓存List集合
 	 */
-	public long setList(String key, List<Object> list) {
+	public long putList(String key, List<Object> list) {
 		return redisTemplate.opsForList().leftPush(key, list);
 	}
 
@@ -73,14 +80,14 @@ public class RedisService {
 	 * 获取List集合
 	 */
 	@SuppressWarnings("unchecked")
-	public List<Object> setList(String key) {
+	public List<Object> getList(String key) {
 		return (List<Object>) redisTemplate.opsForList().leftPop(key);
 	}
 
 	/**
 	 * 缓存Map集合
 	 */
-	public void setMap(String key, Map<Object, Object> map) {
+	public void putMap(String key, Map<Object, Object> map) {
 		redisTemplate.opsForHash().putAll(key, map);
 	}
 
@@ -103,13 +110,6 @@ public class RedisService {
 	 */
 	public Set<Object> getSet(String key, Set<Object> set) {
 		return redisTemplate.opsForSet().members(key);
-	}
-
-	/**
-	 * StringRedisTemplate删除缓存字符串
-	 */
-	public boolean deleteString(String key) {
-		return stringRedisTemplate.delete(key);
 	}
 
 	/**
