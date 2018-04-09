@@ -14,7 +14,7 @@ import com.aliyun.oss.model.ObjectMetadata;
 import com.aliyun.oss.model.PutObjectResult;
 
 /**
- * OSS上传下载文件服务类
+ * OSS上传下载文件服务类(直接使用)
  */
 public class OSSFileUtils {
 

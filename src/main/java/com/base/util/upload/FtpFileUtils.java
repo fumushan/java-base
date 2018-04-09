@@ -12,7 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * FTP上传下载文件服务类
+ * FTP上传下载文件服务类(直接使用)
  */
 public class FtpFileUtils {
 
