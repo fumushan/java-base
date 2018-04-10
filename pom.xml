@@ -107,6 +107,14 @@
 		</dependency>
 
 
+		<!-- 邮件发送依赖 -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.7</version>
+		</dependency>
+
+
 		<!-- 日志管理Begin -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
