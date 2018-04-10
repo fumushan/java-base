@@ -5,6 +5,7 @@ package com.base.exception;
  * 
  */
 public class DaoException extends Exception {
+	
 	private static final long serialVersionUID = 7076352211902647350L;
 
 	public DaoException(String message) {
