@@ -17,11 +17,14 @@ import redis.clients.jedis.JedisPoolConfig;
 @Configuration
 public class RedisConfig {
 
-	public final static String REDIS_HOST = "127.0.0.1";// 服务器地址
+	/**
+	 * 基础包中Redis配置写死,集成到项目中,可以在application.properties中配置
+	 */
+	public final static String REDIS_HOST = "192.168.1.211";// 服务器地址
 	public final static int REDIS_PORT = 6379;// 服务器端口
-	public final static String REDIS_USERNAME = "";// 账号
-	public final static String REDIS_PASSWORD = "fms800811739";// 密码
+	public final static String REDIS_PASSWORD = "Anc&%$&1.2.3";// 密码
 
+	public final static int REDIS_MIN_IDLE = 0;// 最小空闲连接数
 	public final static int REDIS_MAX_IDLE = 8;// 最大空闲连接数
 	public final static int REDIS_MAX_TOTAL = 8;// 最大连接数
 	public final static int REDIS_MAX_WAITMILLIS = 1000;// 最大等待时间,超时就抛出异常
