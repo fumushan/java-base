@@ -9,7 +9,7 @@ import org.springframework.data.redis.core.RedisTemplate;
  * 
  */
 @SuppressWarnings({ "rawtypes" })
-public class RedisUtil {
+public class RedisUtils {
 
 	private RedisTemplate<String, Object> redisTemplate;
 
