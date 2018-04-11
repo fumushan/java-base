@@ -1,9 +1,5 @@
 Manifest-Version: 1.0
-Implementation-Title: java-base
-Implementation-Version: 0.0.1-SNAPSHOT
 Built-By: tykj
-Implementation-Vendor-Id: com.base
 Build-Jdk: 1.8.0_131
-Implementation-URL: http://maven.apache.org
 Created-By: Maven Integration for Eclipse
 

@@ -1,4 +1,4 @@
-package com.base.aop.redis;
+package com.base.aop;
 
 import java.util.Map;
 
