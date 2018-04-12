@@ -4,20 +4,25 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.stereotype.Service;
 
 /**
  * Redis服务类
  */
+@Service
 public class RedisService {
 
 	/**
 	 * StringRedisTemplate与RedisTemplate
 	 * StringRedisTemplate继承RedisTemplate,但两者的数据是不共通的
 	 */
+	@Autowired
 	private StringRedisTemplate stringRedisTemplate;
 
+	@Autowired
 	private RedisTemplate<String, Object> redisTemplate;
 
 	/**

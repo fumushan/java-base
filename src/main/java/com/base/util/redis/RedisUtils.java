@@ -8,7 +8,7 @@ import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
 /**
- * Redis服务类
+ * Redis工具类
  */
 public class RedisUtils {
 
@@ -25,7 +25,7 @@ public class RedisUtils {
 	public final static int REDIS_TIMEOUT = 5000;// 超时时间
 	public final static int REDIS_DATASOURCE = 0;// 数据库编号0~15
 
-	public static JedisPool initJedisPool() {
+	public static JedisPool jedisPool() {
 		logger.info("初始化Redis连接池");
 		JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
 		jedisPoolConfig.setMaxIdle(REDIS_MAX_IDLE);
@@ -33,39 +33,41 @@ public class RedisUtils {
 		jedisPoolConfig.setMaxWaitMillis(REDIS_MAX_WAITMILLIS);
 		jedisPoolConfig.setTestOnBorrow(false);
 		jedisPoolConfig.setTestOnReturn(true);
-
-		logger.info("初始化Redis连接池：host=" + REDIS_HOST + ",port=" + REDIS_PORT);
 		JedisPool jedisPool = new JedisPool(jedisPoolConfig, REDIS_HOST, REDIS_PORT, REDIS_TIMEOUT);
-		logger.info("初始化Redis连接池成功");
+		logger.info("初始化Redis连接池成功：host=" + REDIS_HOST + ",port=" + REDIS_PORT);
 		return jedisPool;
 	}
 
-	public static Jedis initJedis() {
+	public static Jedis jedis() {
 		logger.info("Redis开始连接");
 		Jedis jedis = new Jedis(REDIS_HOST, REDIS_PORT);
 		logger.info("Redis连接成功：host=" + REDIS_HOST + ",port=" + REDIS_PORT);
 		return jedis;
 	}
 
+	/**
+	 * 缓存String字符串
+	 */
 	public static void setString(String key, String value) {
-		Jedis jedis = RedisUtils.initJedis();
+		Jedis jedis = RedisUtils.jedisPool().getResource();
 		jedis.set(key, value);
 	}
 
+	/**
+	 * 获取String字符串
+	 */
 	public static String getString(String key) {
-		Jedis jedis = RedisUtils.initJedis();
+		Jedis jedis = RedisUtils.jedisPool().getResource();
 		return jedis.get(key);
 	}
 
-	public static void main(String[] args) {
-		// 方法一
-		JedisPool jedisPool = RedisUtils.initJedisPool();
-		Jedis jedis = jedisPool.getResource();
-
-		// 方法二
-		// Jedis jedis = RedisUtils.initJedis();
-
-		jedis.set("fumushan", "1234567");
-		System.out.println(jedis.get("fumushan"));
+	/**
+	 * 删除缓存
+	 */
+	public static void deleteString(String key) {
+		Jedis jedis = RedisUtils.jedisPool().getResource();
+		long result = jedis.del(key);
+		logger.info("delete" + result);
 	}
+
 }
